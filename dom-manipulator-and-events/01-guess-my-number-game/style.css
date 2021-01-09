@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+:root {
+  --dark-color: #072348;
+  --light-color: #ffffff;
+  --bright-color: #fecb31;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+.btn:hover {
+  color: var(--dark-color);
+  background-color: var(--bright-color);
+}
+input[type='number'] {
+  height: 10vh;
+}
+h1 {
+  color: var(--bright-color);
+}
+p {
+  padding-bottom: 1rem;
+}
+body {
+  background-color: var(--dark-color);
+}
+header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+header h1 {
+  border-bottom: 2px solid var(--bright-color);
+  padding-bottom: 2.5rem;
+}
+.number {
+  background-color: var(--bright-color);
+  align-self: center;
+
+  top: 7rem;
+  position: absolute;
+  padding: 1rem;
+}
+
+.header1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.restart {
+  align-self: start;
+}
+.between {
+  align-self: flex-end;
+  color: var(--light-color);
+}
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+.content {
+  flex-basis: 35%;
+  text-align: center;
+  padding-top: 25vh;
+  color: var(--light-color);
+}
+.message {
+  color: var(--bright-color);
+  font-size: 1.5rem;
+}
+.guess {
+  background: none;
+  border: 4px solid #eee;
+  font-family: inherit;
+  color: inherit;
+  font-size: 5rem;
+  padding: 2.5rem 0 2.5rem 2.5rem;
+  width: 25rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.check {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Declaring Variables</title>
+    <script src="07-switch-statement.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Code</h1>
+    <pre>
+        /* The Below directive bound to follow JS norms */
+        "use strict";
+        
+        /***********************************************
+         * Using switch statements
+         */
+        const a = 10,
+          b = 20;
+        let result;
+        const operator = "+";
+        switch (operator) {
+          case "+":
+            result = a + b;
+            break;
+          case "-":
+            result = a - b;
+            break;
+          case "*":
+            result = a * b;
+          default:
+            result = a / b;
+        }
+        
+        console.log(`${a} ${operator} ${b} is ${result}`);
+      
+    </pre>
+    <h2>Output</h2>
+    <pre>
+        10 + 20 is 30
+    </pre>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Declaring Variables</title>
+    <script src="10-arrow-operator-function-declaration.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Code</h1>
+    <pre>
+        /* The Below directive bound to follow JS norms */
+        "use strict";
+        
+        /***********************************************
+         * Declaring functions with arrow operator
+         */
+        
+        const a = 10,
+          b = 20;
+        const max = (a, b) => {
+          return a > b ? a : b;
+        };
+        console.log(`Max of ${a} and ${b} is ${max(a, b)}`);
+        
+        // Declaring a function that contains a single line statement and returns a value
+        
+        const min = (a, b) => (a > b ? a : b);
+        
+        console.log(`Min of ${a} and ${b} is ${min(a, b)}`);
+        
+        // Passing single argument to function
+        const table = (num) => {
+          let output = ``;
+          for (let i = 0; i < 11; i++) {
+            output += `${num} * ${i} = ${num * i}
+        `;
+          }
+          return output;
+        };
+        console.log(table(5));
+        
+    </pre>
+    <h2>Output</h2>
+    <pre>
+        Max of 10 and 20 is 20
+        Min of 10 and 20 is 20
+        5 * 0 = 0
+        5 * 1 = 5
+        5 * 2 = 10
+        5 * 3 = 15
+        5 * 4 = 20
+        5 * 5 = 25
+        5 * 6 = 30
+        5 * 7 = 35
+        5 * 8 = 40
+        5 * 9 = 45
+        5 * 10 = 50
+    </pre>
+  </body>
+</html>

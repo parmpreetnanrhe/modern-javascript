@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Type Conversion & Coercion</title>
+    <script src="05-type-conversion-and-coercion.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Basic Example</h1>
+    <pre>
+-----------------------------------------
+Type of 
+-----------------------------------------
+Type of 10 is number
+Type of 2.5 is number 
+Type of hello is string
+Type of <empty string> is string 
+Type of true is boolean 
+Type of false is boolean 
+Type of Array [ "Apple", "Banana" ] is object 
+Type of Array [] is object
+Type of null is object
+Type of NaN is number
+Type of undefined is undefined 
+----------------------------------------- 
+String Conversion Result 
+----------------------------------------- 
+Result: 10 Value: 10 
+Result: 2.5 Value: 2.5 
+Result: hello Value: hello 
+Result: <empty string> Value: <empty string> 
+Result: true Value: true 
+Result: false Value: false 
+Result: Apple,Banana Value: Array [ "Apple", "Banana" ]
+Result: <empty string> Value: Array []
+Result: null Value: null 
+Result: NaN Value: NaN 
+Result: undefined Value: undefined 
+----------------------------------------- 
+Boolean Conversion Result 
+----------------------------------------- 
+Result: true Value: 10 
+Result: true Value: 2.5 
+Result: true Value: hello 
+Result: false Value: <empty string> 
+Result: true Value: true 
+Result: false Value: false 
+Result: true Value: Array [ "Apple", "Banana" ]
+Result: true Value: Array []
+Result: false Value: null 
+Result: false Value: NaN 
+Result: false Value: undefined 
+----------------------------------------- 
+Number Conversion Result 
+----------------------------------------- 
+Result: 10 Value: 10
+Result: 2.5 Value: 2.5 
+Result: NaN Value: hello
+Result: 0 Value: <empty string>
+Result: 1 Value: true 
+Result: 0 Value: false 
+Result: NaN Value: Array [ "Apple", "Banana" ]
+Result: 0 Value: Array []
+Result: 0 Value: null
+Result: NaN Value: NaN 
+Result: NaN Value: undefined
+    </pre>
+  </body>
+</html>

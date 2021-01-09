@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Methods</title>
+    <script src="13-object-methods.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Code</h1>
+    <pre>
+        /* The Below directive bound to follow JS norms */
+        "use strict";
+        
+        /***********************************************
+         * Object Method
+         */
+        let john = {
+          firstName: "John",
+          lastName: "Brown",
+          standard: "VI",
+          section: "A",
+          summary: function () {
+            return `${this.firstName} ${this.lastName} studies in ${this.standard} ${this.section}.`;
+          },
+          birthYear: function (year) {
+            this.age = 2021 - year;
+            this.doy = year;
+            return this.doy;
+          },
+        };
+        console.log(john.summary());
+        console.log("Birth Year:", john["birthYear"](2000));
+        console.log("Birth Year:", john.birthYear(2000));
+        console.log("Age:", john.age);
+        
+    </pre>
+    <h2>Output</h2>
+    <pre>
+    John Brown studies in VI A.
+    Birth Year: 2000
+    Birth Year: 2000
+    Age: 21
+    </pre>
+  </body>
+</html>

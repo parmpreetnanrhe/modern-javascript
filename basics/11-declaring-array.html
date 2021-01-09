@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Declaring Variables</title>
+    <script src="11-declaring-array.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Code</h1>
+    <pre>
+        /* The Below directive bound to follow JS norms */
+        "use strict";
+        
+        /***********************************************
+         * Declaring Arrays
+         */
+        
+        // Array Declaration Method 1
+        let fruits = [];
+        // add elements to array
+        fruits.push("Apple");
+        fruits.push("Orange");
+        fruits.push("Pineapple");
+        // add elements in the beginning
+        fruits.unshift("Peach");
+        console.log("Array:", fruits);
+        // remove element from end
+        const lastFruit = fruits.pop();
+        console.log("Removed Element:", lastFruit);
+        console.log("Array:", fruits);
+        const firstFruit = fruits.shift();
+        console.log("Removed Element:", firstFruit);
+        console.log("Array:", fruits);  
+        console.log("Has Litchi:", fruits.includes("Litchi"));
+        console.log("Has Apple:", fruits.includes("Apple"));
+        console.log("Index of Litchi:", fruits.indexOf("Litchi"));
+        console.log("Index of Apple:", fruits.indexOf("Apple"));   
+        
+      
+    </pre>
+    <h2>Output</h2>
+    <pre>
+        Array:Array(4) [ "Peach", "Apple", "Orange", "Pineapple" ]
+        Removed Element: Pineapple
+        Array: Array(3) [ "Peach", "Apple", "Orange" ]
+        Removed Element: Peach
+        Array: Array [ "Apple", "Orange" ]
+        Has Litchi: false
+        Has Apple: true
+        Index of Litchi: -1
+        Index of Apple: 0
+    </pre>
+  </body>
+</html>

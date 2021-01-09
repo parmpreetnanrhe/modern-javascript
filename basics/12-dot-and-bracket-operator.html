@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dot & Bracket Operator</title>
+    <script src="12-dot-and-bracket-operator.js" lang="js"></script>
+  </head>
+  <body>
+    <h1>Code</h1>
+    <pre>
+        /* The Below directive bound to follow JS norms */
+        "use strict";
+        
+        /***********************************************
+         * Dot and Bracket Operator
+         */
+        let john = {
+          firstName: "John",
+          lastName: "Brown",
+          standard: "VI",
+          section: "A",
+        };
+        // Dot operator
+        console.log("First name:", john.firstName);
+        // Bracket operator
+        console.log("Last name:", john["lastName"]);
+        
+        const nameKey = "Name";
+        // Dot operator -- Invalid
+        // console.log("First name:", john."first"+nameKey);
+        // Bracket operator
+        console.log("Last name:", john["last" + nameKey]);
+        
+    </pre>
+    <h2>Output</h2>
+    <pre>
+      First name: John
+      Last name: Brown
+      Last name: Brown
+    </pre>
+  </body>
+</html>

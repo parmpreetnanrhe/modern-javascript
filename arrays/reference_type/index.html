@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Arrays -Reference Type</title>
+  </head>
+  <body>
+    <h1>Arrays are passed by reference</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        let arr1 = [1, 2, 3];
+        let arr2 = arr1;
+        arr2.push(10);
+        console.log(arr1);
+        console.log(arr2);        
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        Array(4) [ 1, 2, 3, 10 ]
+        Array(4) [ 1, 2, 3, 10 ]
+      </pre
+    >
+  </body>
+</html>

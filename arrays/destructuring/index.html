@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Array Destructuring</title>
+  </head>
+  <body>
+    <h1>Destructuring Array</h1>
+    <p>Extracting array values to variable(s).</p>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+
+      const fruits = ["Apple", "Oranges", "grapes"];
+      /**
+      * Destructuring array by extracting first two values in variables,namely: primary and secondary
+      */
+      let [primary, secondary] = fruits;
+      console.log(`Fruits: ${fruits}`);
+      console.log(`Primary: ${primary}\nSecondary: ${secondary}`);
+
+      /**
+      * Destructuring array by extracting first and third value in variables,namely: primary and secondary
+      */
+      [primary, , secondary] = fruits;
+      console.log(`Fruits: ${fruits}`);
+      console.log(`Primary: ${primary}\nSecondary: ${secondary}`);
+
+      /**
+      * Assigning default values to the destructured variables
+      */
+
+      let [
+        first,
+        ,
+        ,
+        fourth = "Assigns this value instead of defining undefined",
+      ] = fruits;
+      console.log("First " + first);
+      console.log("Fourth " + fourth);
+      let [x, y] = [10, 20];
+      // swapping values
+      [x, y] = [y, x];
+      console.log(x, y);
+    </pre>
+
+    <h2>Output</h2>
+    <pre>
+      Fruits: Apple,Oranges,grapes
+      Primary: Apple
+      Secondary: Oranges
+      Fruits: Apple,Oranges,grapes
+      Primary: Apple
+      Secondary: grapes
+      First Apple
+      Fourth Assigns this value instead of defining undefined
+      20 10
+    </pre>
+  </body>
+</html>

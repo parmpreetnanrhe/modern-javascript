@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Spread Operator</title>
+  </head>
+  <body>
+    <h1>Spread Operator</h1>
+    <p>To extract values from array</p>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        /**
+         * Spread operator is used to extract all values from an array,
+         * without creating other variables
+         * It always comes at the right side of the assignment statement
+         */
+        
+        const arr = [1, 2, 3, 4];
+        // get all values from already created arr, and add 2 more elements tothe newArray
+        const newArr = [...arr, 5, 6];
+        console.log("Original Array: ", arr);
+        console.log("New Array: ", newArr);
+        
+        // creating copy of array
+        
+        const copyArr = [...arr];
+        console.log("Copy Array: ", copyArr);
+        
+        // Function
+        
+        function sum(a = 0, b = 0, c = 0, d = 0, e = 0) {
+          console.log(`Sum=${a + b + c + d + e}`);
+        }
+        
+        sum(10, 20, 30);
+        // Passing all values from array to function
+        sum(...arr);
+        
+      </pre
+    >
+
+    <h2>Output</h2>
+    <pre>
+        Original Array: Array(4) [ 1, 2, 3, 4 ]
+        New Array: Array(6) [ 1, 2, 3, 4, 5, 6 ]
+        Copy Array: Array(4) [ 1, 2, 3, 4 ]
+        Sum=60
+        Sum=10
+      </pre
+    >
+  </body>
+</html>

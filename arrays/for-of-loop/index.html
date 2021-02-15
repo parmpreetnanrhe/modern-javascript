@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>for-of Loop</title>
+  </head>
+  <body>
+    <h1>for-of Loop</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      let fruits = ["Apple", "Orange", "Grapes", "Papaya"];
+      
+      // Iterating over array
+      
+      for (let fruit of fruits) {
+        console.log(fruit);
+      }
+      
+      // Iterating over array and unstructuring array key and value
+      // fruits.entries() -- returns array of key,value pair array
+      for (let [key, fruit] of fruits.entries()) {
+        console.log(`Element at index ${key} is ${fruit}`);
+      }        
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      Apple
+      Orange
+      Grapes
+      Papaya
+      Element at index 0 is Apple
+      Element at index 1 is Orange
+      Element at index 2 is Grapes
+      Element at index 3 is Papaya
+      </pre
+    >
+  </body>
+</html>

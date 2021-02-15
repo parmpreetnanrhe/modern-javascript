@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Query Selector</title>
+  </head>
+  <body>
+    <h1>Query Selector</h1>
+    <p class="para">Para 1</p>
+    <p class="para">Para 2</p>
+    <p class="para">Para 3</p>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        /**
+        * Select all elements by class
+        */
+        // querySelectorAll returns array of elements that matches the selction pattern
+        const paraElements = document.querySelectorAll(".para");
+        /**
+        * Retrieving selected elements count
+        */
+        const paraElementsCount = paraElements.length;
+        console.log("Number of selected elements: " + paraElementsCount);
+        /**
+        * Iterating over elements in paraElements array
+        */
+        paraElements.forEach((element, key) => {
+        console.log(`Element ${key + 1} is ${element.innerHTML}`);
+        });
+
+        /***
+        * Selecting the first element that matches the criteria
+        * Returns null if no element matches the criteria
+        */
+        const invalidElemnt = document.querySelector("#para");
+
+        console.log("invalidElement: " + invalidElemnt);
+
+        const firstParagraph = document.querySelector("p");
+        console.log(firstParagraph.textContent);
+
+    </pre>
+    <h2>Output:</h2>
+    <pre>
+    Number of selected elements: 3
+    Element 1 is Para 1
+    Element 2 is Para 2
+    Element 3 is Para 3
+    invalidElement: null
+    Para 1
+</pre
+    >
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Default Parameters</title>
+  </head>
+  <body>
+    <h1>Default Parameters</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      // Assigning default values to parameters
+      const makeBooking = function (
+        flightName,
+        numberOfPassangers = 1,
+        price = 200 * numberOfPassangers
+      ) {
+        console.log(
+          `Booking confirmed for ${flightName} for ${numberOfPassangers} @ $ ${price}`
+        );
+      };
+
+      makeBooking("LN101");
+      makeBooking("LN101", 2);
+      makeBooking("LN101", 3, 900);
+      makeBooking("LN101", undefined, 600);
+            
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      Booking confirmed for LN101 for 1 @ $ 200
+      Booking confirmed for LN101 for 2 @ $ 400
+      Booking confirmed for LN101 for 3 @ $ 900
+      Booking confirmed for LN101 for 1 @ $ 600
+      </pre
+    >
+  </body>
+</html>

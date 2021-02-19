@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Rest Operator</title>
+  </head>
+  <body>
+    <h1>Rest Operator</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+
+        // Creating an object
+        const john = {
+        name: "John",
+        age: 28,
+        height: 5.6,
+        };
+
+        // destructuring object data
+        const details = ({ name, age: personAge, height }) => {
+        console.log(`Name: ${name} Age: ${personAge} Height: ${height}`);
+        };
+
+        const print = ({ name, age, height } = { ...obj }) => {
+        console.log(`Name: ${name} Age: ${age} Height: ${height}`);
+        };
+        details(john);
+        print(john);
+
+            
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        Name: John Age: 28 Height: 5.6
+        Name: John Age: 28 Height: 5.6
+      </pre
+    >
+  </body>
+</html>

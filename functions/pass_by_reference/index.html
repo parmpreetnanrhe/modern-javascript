@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Pass argument by reference</title>
+  </head>
+  <body>
+    <h1>Pass argument by reference</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      // Javascript has 3 data types that are passed by reference: Array , Function , and Object .
+
+      /**
+      * 1. Passing Array to a function
+      */
+
+      const sortArray = (arr) => {
+        let length = arr.length;
+        for (let i = 0; i < length - 1; i++) {
+          for (let j = i + 1; j < length; j++) {
+            if (arr[i] < arr[j]) {
+              // swap values
+              [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+          }
+        }
+      };
+
+      let arr = [5, 2, 10, 1, 20, -1, 6];
+      console.log("Before Swapping: ", ...arr);
+      sortArray(arr);
+      console.log("After Swapping: ", ...arr);
+
+      let person = {
+        name: "raman",
+        age: 18,
+        height: 5.7,
+      };
+
+      /**
+      * 2. Passing object to a function
+      */
+      const formatPerson = (person) => {
+        person.name = person.name.toUpperCase();
+      };
+      console.log("Before Formatting: ", person);
+      formatPerson(person);
+      console.log("After Formatting: ", person);            
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      Before Swapping:  5 2 10 1 20 -1 6
+      After Swapping:  20 10 6 5 2 1 -1
+      Before Formatting: Object { name: "raman", age: 18, height: 5.7 }
+      After Formatting: Object { name: "RAMAN", age: 18, height: 5.7 }
+      </pre
+    >
+  </body>
+</html>

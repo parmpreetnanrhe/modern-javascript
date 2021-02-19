@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Nullish Coalescing Operator</title>
+  </head>
+  <body>
+    <h1>Nullish Coalescing Operator</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        // Assigning default values to parameters
+        const makeBooking = function (flightName, numberOfPassangers, price) {
+          // assign default value only when parameter is not defined.
+          //(false value is considered as a valid value when parameter is defined)
+          numberOfPassangers = numberOfPassangers ?? 10;
+          price = price ?? numberOfPassangers * 200;
+          console.log(
+            `Booking confirmed for ${flightName} for ${numberOfPassangers} @ $ ${price}`
+          );
+        };
+        
+        const makeBookingOldWay = function (flightName, numberOfPassangers, price) {
+          // assign default value only when parameter is not defined.
+          //(false value is not considered as a valid value even when parameter is defined)
+          numberOfPassangers = numberOfPassangers || 10;
+          price = price ?? numberOfPassangers * 200;
+          console.log(
+            `Booking confirmed for ${flightName} for ${numberOfPassangers} @ $ ${price}`
+          );
+        };
+        
+        makeBooking("LN101");
+        makeBooking("LN101", 2);
+        makeBooking("LN101", 0);
+        makeBooking("LN101", 3, 900);
+        makeBooking("LN101", undefined, 600);
+        
+        makeBookingOldWay("LN101");
+        makeBookingOldWay("LN101", 2);
+        makeBookingOldWay("LN101", 0); // Here numberOfPassangers would be assigned value 10 instead of 0
+        makeBookingOldWay("LN101", 3, 900);
+        makeBookingOldWay("LN101", undefined, 600);
+        
+            
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        Booking confirmed for LN101 for 10 @ $ 2000
+        Booking confirmed for LN101 for 2 @ $ 400
+        Booking confirmed for LN101 for 0 @ $ 0
+        Booking confirmed for LN101 for 3 @ $ 900
+        Booking confirmed for LN101 for 10 @ $ 600
+        Booking confirmed for LN101 for 10 @ $ 2000
+        Booking confirmed for LN101 for 2 @ $ 400
+        Booking confirmed for LN101 for 10 @ $ 2000
+        Booking confirmed for LN101 for 3 @ $ 900
+        Booking confirmed for LN101 for 10 @ $ 600
+      </pre
+    >
+  </body>
+</html>

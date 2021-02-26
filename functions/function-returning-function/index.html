@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Function Returning a Function</title>
+  </head>
+  <body>
+    <h1>Function Returning a Function</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+
+const greet = (greeting) => {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const hiGreet = greet("Hi");
+hiGreet("John");
+
+greet("Hello")("Peter");   
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        Hi John
+        Hello Peter        
+      </pre
+    >
+    <script src="script.js"></script>
+  </body>
+</html>

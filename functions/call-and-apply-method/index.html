@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Call and Apply Method</title>
+  </head>
+  <body>
+    <h1>Call and Apply Method</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      // Method 1
+      // const book = function (flightNumber, name) {
+      //   console.log(
+      //     `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNumber}`
+      //   );
+      //   this.bookings.push({ flight: `${this.iataCode}${flightNumber}`, name });
+      // };
+      //
+      const airIndia = {
+        airline: "Air India",
+        iataCode: "ITA123",
+        bookings: [],
+      
+        book(flightNumber, name) {
+          console.log(
+            `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNumber}`
+          );
+          this.bookings.push({ flight: `${this.iataCode}${flightNumber}`, name });
+        },
+      };
+      
+      const kingfisher = {
+        airline: "King Fisher",
+        iataCode: "ITA123",
+        bookings: [],
+      };
+      // Method 2
+      const book = airIndia.book;
+      // Call method accepts first argument that would be treated as this keyword in the function
+      // followed by function arguments
+      book.call(airIndia, 786, "Rihanna");
+      book.call(airIndia, ...[24, "Shakira"]);
+      
+      book.call(kingfisher, 123, "John");
+      book.call(kingfisher, 78, "Peter");
+      
+      // Apply method is similar to call method
+      // It just accepts function parameters as array
+      book.apply(airIndia, [21, "Alan"]);
+      
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      Rihanna booked a seat on Air India flight ITA123786
+      Shakira booked a seat on Air India flight ITA12324
+      John booked a seat on King Fisher flight ITA123123
+      Peter booked a seat on King Fisher flight ITA12378
+      Alan booked a seat on Air India flight ITA12321        
+      </pre
+    >
+    <script src="script.js"></script>
+  </body>
+</html>

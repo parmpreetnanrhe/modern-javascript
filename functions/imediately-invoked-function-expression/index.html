@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Immediately Invoked Function Expressions (IIFE)</title>
+  </head>
+  <body>
+    <h1>Immediately Invoked Function Expressions (IIFE)</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      // Immediately invoked function expressions are designed for calling once
+      
+      (function () {
+        console.log("This anonymous function would be called only once.");
+      })();
+      
+      // Anonymous function as an event callback function
+      
+      setTimeout(function () {
+        console.log("Called from setInterval function call.");
+      }, 1000);
+      
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      This anonymous function would be called only once.
+      Called from setInterval function call.
+      </pre
+    >
+    <script src="script.js"></script>
+  </body>
+</html>

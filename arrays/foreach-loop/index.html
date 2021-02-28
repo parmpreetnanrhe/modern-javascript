@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Foreach Loop</title>
+  </head>
+  <body>
+    <h1>Foreach Loop</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        /**
+        * forEach loop accepts one call back function
+        * It runs for each value of the array
+        *  break and continue statement does not work in forEach loop
+        */
+
+        const names = ["john", "peter", "mark"];
+        // forEach function passes element, index and array to the callback function in order
+        names.forEach((element, index, array) => {
+        console.log(`Element: ${element} Index: ${index} array:${array}`);
+        });
+
+        names.forEach((element) => {
+        console.log(`Element: ${element} Uppercase:${element.toUpperCase()}`);
+        });
+
+        // Defining a function that accepts an argument
+        const greet = (name) => {
+        console.log(`Hello ${name}`);
+        };
+
+        // Since foreach loop passes element value , index and array as argument to the callback function
+        // greet function would receive the array values one by one
+        names.forEach(greet);
+
+    </pre>
+    <h2>Output</h2>
+    <pre>
+        Element: john Index: 0 array:john,peter,mark
+        Element: peter Index: 1 array:john,peter,mark
+        Element: mark Index: 1 array:john,peter,mark
+        Element: john Uppercase:JOHN
+        Element: peter Uppercase:PETER
+        Element: mark Uppercase:MARK
+        Hello john
+        Hello peter
+        Hello mark
+    </pre>
+  </body>
+</html>

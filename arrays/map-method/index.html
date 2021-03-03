@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Map array method</title>
+  </head>
+  <body>
+    <h1>Map array method</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+        // Map function accepts a callback function and creates a new array
+        // The callback function should return a value as the map has to return a value for each array element
+        
+        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        
+        const resultArr = arr.map((number) => number * 2);
+        console.log(resultArr);
+        const currency = "EUR";
+        let users = [
+          {
+            name: "john smith",
+            pin: 1234,
+            account_number: "ABC1234",
+            transactions: [
+              {
+                date: "01/01/2021",
+                amount: 1000,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "02/01/2021",
+                amount: -500,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/02/2021",
+                amount: 800,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/03/2021",
+                amount: -50,
+                comment: "Some random amount transfer.",
+              },
+            ],
+          },
+          {
+            name: "Peter Parker",
+            pin: 1234,
+            account_number: "ABC1235",
+            transactions: [
+              {
+                date: "01/01/2021",
+                amount: 2000,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "02/01/2021",
+                amount: -1500,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/02/2021",
+                amount: 800,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/03/2021",
+                amount: -150,
+                comment: "Some random amount transfer.",
+              },
+            ],
+          },
+          {
+            name: "merry JANE",
+            pin: 1234,
+            account_number: "ABC1236",
+            transactions: [
+              {
+                date: "01/01/2021",
+                amount: 1000,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "02/01/2021",
+                amount: -250,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/02/2021",
+                amount: 900,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/03/2021",
+                amount: 350,
+                comment: "Some random amount transfer.",
+              },
+            ],
+          },
+          {
+            name: "john cena",
+            pin: 1234,
+            account_number: "ABC1237",
+            transactions: [
+              {
+                date: "01/01/2021",
+                amount: 1000,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "02/01/2021",
+                amount: -500,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/02/2021",
+                amount: 800,
+                comment: "Some random amount transfer.",
+              },
+              {
+                date: "01/03/2021",
+                amount: -50,
+                comment: "Some random amount transfer.",
+              },
+            ],
+          },
+        ];
+        
+        const createUsername = (user) => {
+          let words = user.name.toLowerCase().split(" ");
+          // Map creates a new array with the initials which can be used further to create username
+          let initials = words
+            .map(function (word) {
+              return word[0];
+            })
+            .join("");
+          user.username = initials;
+        };
+        
+        const formatAmount = (amount) => `${currency} ${amount}`;
+        
+        const formatUser = (user) => {
+          user.name = user.name.toUpperCase();
+          createUsername(user);
+          user.transactions = user.transactions.forEach((transaction) => {
+            transaction.desctiption = `${user.name} has ${
+              transaction.amount > 0 ? "deposited" : "withdrew"
+            } ${formatAmount(Math.abs(transaction.amount))} on ${transaction.date}`;
+          });
+        };
+        // Use forEach where no new array is required
+        users.forEach(formatUser);
+        console.log(users);
+        
+      
+    </pre>
+    <h2>Output</h2>
+    <pre>
+        Array(10) [ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ]
+        [
+            {
+                "name": "JOHN SMITH",
+                "pin": 1234,
+                "account_number": "ABC1234",
+                "username": "js"
+            },
+            {
+                "name": "PETER PARKER",
+                "pin": 1234,
+                "account_number": "ABC1235",
+                "username": "pp"
+            },
+            {
+                "name": "MERRY JANE",
+                "pin": 1234,
+                "account_number": "ABC1236",
+                "username": "mj"
+            },
+            {
+                "name": "JOHN CENA",
+                "pin": 1234,
+                "account_number": "ABC1237",
+                "username": "jc"
+            }
+        ]
+    </pre>
+  </body>
+</html>

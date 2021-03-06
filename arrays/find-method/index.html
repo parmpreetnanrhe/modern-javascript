@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="script.js"></script>
-    <title>Reduce array method</title>
+    <title>Find array method</title>
   </head>
   <body>
-    <h1>Reduce array method</h1>
+    <h1>Find array method</h1>
     <h2>Code</h2>
     <pre>
         "use strict;";
-        // Reduce function accepts a callback function and returns a single value based on the array
-        // The callback function should return a single value
+        // FInd function accepts a callback function and returns first matched element based on the filteration criteria
 
         const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-        const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-        console.log(sum);
+        const result = arr.find((number) => number > 5);
+        console.log(result);
         const currency = "EUR";
         let users = [
         {
@@ -143,18 +142,10 @@
         };
 
         const formatAmount = (amount) => `${currency} ${amount}`;
-        const getCurrentBalance = (user) => {
-        let initialBalance = 0;
-        user.balance = user.transactions.reduce((currentBalance, transaction) => {
-            currentBalance += transaction.amount;
-            return currentBalance;
-        }, initialBalance);
-        };
 
         const formatUser = (user) => {
         user.name = user.name.toUpperCase();
         createUsername(user);
-        getCurrentBalance(user);
         user.transactions.forEach((transaction) => {
             transaction.desctiption = `${user.name} has ${
             transaction.amount > 0 ? "deposited" : "withdrew"
@@ -164,12 +155,12 @@
         // Use forEach where no new array is required
         users.forEach(formatUser);
         // get users with username "js"
-        console.log(...users);
+        console.log(users.find((user) => user.username == "js"));
 
     </pre>
     <h2>Output</h2>
     <pre>
-        55
+        6
         {
             "name": "JOHN SMITH",
             "pin": 1234,
@@ -200,110 +191,9 @@
                 "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
               }
             ],
-            "username": "js",
-            "balance": 1250
+            "username": "js"
           }
-          {
-            "name": "PETER PARKER",
-            "pin": 1234,
-            "account_number": "ABC1235",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 2000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "PETER PARKER has deposited EUR 2000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -1500,
-                "comment": "Some random amount transfer.",
-                "desctiption": "PETER PARKER has withdrew EUR 1500 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 800,
-                "comment": "Some random amount transfer.",
-                "desctiption": "PETER PARKER has deposited EUR 800 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": -150,
-                "comment": "Some random amount transfer.",
-                "desctiption": "PETER PARKER has withdrew EUR 150 on 01/03/2021"
-              }
-            ],
-            "username": "pp",
-            "balance": 1150
-          }
-          {
-            "name": "MERRY JANE",
-            "pin": 1234,
-            "account_number": "ABC1236",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 1000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "MERRY JANE has deposited EUR 1000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -250,
-                "comment": "Some random amount transfer.",
-                "desctiption": "MERRY JANE has withdrew EUR 250 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 900,
-                "comment": "Some random amount transfer.",
-                "desctiption": "MERRY JANE has deposited EUR 900 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": 350,
-                "comment": "Some random amount transfer.",
-                "desctiption": "MERRY JANE has deposited EUR 350 on 01/03/2021"
-              }
-            ],
-            "username": "mj",
-            "balance": 2000
-          }
-          {
-            "name": "JOHN CENA",
-            "pin": 1234,
-            "account_number": "ABC1237",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 1000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN CENA has deposited EUR 1000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -500,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN CENA has withdrew EUR 500 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 800,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN CENA has deposited EUR 800 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": -50,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN CENA has withdrew EUR 50 on 01/03/2021"
-              }
-            ],
-            "username": "jc",
-            "balance": 1250
-          }
-
-
+          undefined
     </pre>
   </body>
 </html>

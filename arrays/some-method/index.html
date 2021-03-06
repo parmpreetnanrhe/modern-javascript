@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="script.js"></script>
-    <title>Filter array method</title>
+    <title>Some array method</title>
   </head>
   <body>
-    <h1>Filter array method</h1>
+    <h1>Some array method</h1>
     <h2>Code</h2>
     <pre>
         "use strict;";
-        // Filter function accepts a callback function and creates a new array
-        // The callback function should return a boolean value based on the filteration criteria
+        // some function accepts  a callback function as an argument
+        // and returns first value that matches the specified criteria.
 
         const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        console.log(`Elements ${arr}`);
+        const result = arr.some((elem) => elem > 5);
+        console.log(`Element greater than 5 ${result}`);
+        const result2 = arr.some((elem) => elem > 50);
+        console.log(`Element greater than 50 ${result2}`);
 
-        const resultArr = arr.filter((number) => number % 2 == 0);
-        console.log(resultArr);
         const currency = "EUR";
         let users = [
         {
@@ -155,47 +158,19 @@
         };
         // Use forEach where no new array is required
         users.forEach(formatUser);
-        // get users with username "js"
-        console.log(...users.filter((user) => user.username == "js"));
+
+        let anyTransactionAbove1500 = users.some((user) =>
+        user.transactions.find((transaction) => transaction.amount > 1500)
+        );
+        // get transactions of all users
+        console.log(`Any transaction above 1500 ${anyTransactionAbove1500}`);
 
     </pre>
     <h2>Output</h2>
     <pre>
-        Array(5) [ 2, 4, 6, 8, 10 ]
-        {
-            "name": "JOHN SMITH",
-            "pin": 1234,
-            "account_number": "ABC1234",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 1000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -500,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 800,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 800 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": -50,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
-              }
-            ],
-            "username": "js"
-          }
-
-
+        Elements 1,2,3,4,5,6,7,8,9,10
+        Element greater than 5 true
+        Any transaction above 1500 true
     </pre>
   </body>
 </html>

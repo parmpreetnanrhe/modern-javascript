@@ -1,11 +1,14 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// some function accepts  a callback function as an argument
+// and returns first value that matches the specified criteria.
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(`Elements ${arr}`);
+const result = arr.some((elem) => elem > 5);
+console.log(`Element greater than 5 ${result}`);
+const result2 = arr.some((elem) => elem > 50);
+console.log(`Element greater than 50 ${result2}`);
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
 const currency = "EUR";
 let users = [
   {
@@ -130,18 +133,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -150,5 +145,9 @@ const formatUser = (user) => {
 };
 // Use forEach where no new array is required
 users.forEach(formatUser);
-// get users with username "js"
-console.log(...users);
+
+let anyTransactionAbove1500 = users.some((user) =>
+  user.transactions.find((transaction) => transaction.amount > 1500)
+);
+// get transactions of all users
+console.log(`Any transaction above 1500 ${anyTransactionAbove1500}`);

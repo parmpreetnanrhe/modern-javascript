@@ -5,197 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="script.js"></script>
-    <title>Filter array method</title>
+    <title>Every array method</title>
   </head>
   <body>
-    <h1>Filter array method</h1>
+    <h1>Every array method</h1>
     <h2>Code</h2>
     <pre>
         "use strict;";
-        // Filter function accepts a callback function and creates a new array
-        // The callback function should return a boolean value based on the filteration criteria
-
+        // every function accepts  a callback function as an argument
+        // and returns true if all values matche the specified criteria.
+        
         const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-        const resultArr = arr.filter((number) => number % 2 == 0);
-        console.log(resultArr);
+        console.log(`Elements ${arr}`);
+        const result = arr.every((elem) => elem > 0);
+        console.log(`All elements are greater than 0 ${result}`);
+        const result2 = arr.every((elem) => elem > 50);
+        console.log(`All elements are greater than 50 ${result2}`);
+        
         const currency = "EUR";
         let users = [
-        {
+          {
             name: "john smith",
             pin: 1234,
             account_number: "ABC1234",
             transactions: [
-            {
+              {
                 date: "01/01/2021",
                 amount: 1000,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "02/01/2021",
                 amount: -500,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/02/2021",
                 amount: 800,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/03/2021",
                 amount: -50,
                 comment: "Some random amount transfer.",
-            },
+              },
             ],
-        },
-        {
+          },
+          {
             name: "Peter Parker",
             pin: 1234,
             account_number: "ABC1235",
             transactions: [
-            {
+              {
                 date: "01/01/2021",
                 amount: 2000,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "02/01/2021",
-                amount: -1500,
+                amount: 1500,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/02/2021",
                 amount: 800,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/03/2021",
-                amount: -150,
+                amount: 150,
                 comment: "Some random amount transfer.",
-            },
+              },
             ],
-        },
-        {
+          },
+          {
             name: "merry JANE",
             pin: 1234,
             account_number: "ABC1236",
             transactions: [
-            {
+              {
                 date: "01/01/2021",
                 amount: 1000,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "02/01/2021",
                 amount: -250,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/02/2021",
                 amount: 900,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/03/2021",
                 amount: 350,
                 comment: "Some random amount transfer.",
-            },
+              },
             ],
-        },
-        {
+          },
+          {
             name: "john cena",
             pin: 1234,
             account_number: "ABC1237",
             transactions: [
-            {
+              {
                 date: "01/01/2021",
                 amount: 1000,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "02/01/2021",
                 amount: -500,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/02/2021",
                 amount: 800,
                 comment: "Some random amount transfer.",
-            },
-            {
+              },
+              {
                 date: "01/03/2021",
                 amount: -50,
                 comment: "Some random amount transfer.",
-            },
+              },
             ],
-        },
+          },
         ];
-
+        
         const createUsername = (user) => {
-        let words = user.name.toLowerCase().split(" ");
-        // Map creates a new array with the initials which can be used further to create username
-        let initials = words
+          let words = user.name.toLowerCase().split(" ");
+          // Map creates a new array with the initials which can be used further to create username
+          let initials = words
             .map(function (word) {
-            return word[0];
+              return word[0];
             })
             .join("");
-        user.username = initials;
+          user.username = initials;
         };
-
+        
         const formatAmount = (amount) => `${currency} ${amount}`;
-
+        
         const formatUser = (user) => {
-        user.name = user.name.toUpperCase();
-        createUsername(user);
-        user.transactions.forEach((transaction) => {
+          user.name = user.name.toUpperCase();
+          createUsername(user);
+          user.transactions.forEach((transaction) => {
             transaction.desctiption = `${user.name} has ${
-            transaction.amount > 0 ? "deposited" : "withdrew"
+              transaction.amount > 0 ? "deposited" : "withdrew"
             } ${formatAmount(Math.abs(transaction.amount))} on ${transaction.date}`;
-        });
+          });
         };
         // Use forEach where no new array is required
         users.forEach(formatUser);
-        // get users with username "js"
-        console.log(...users.filter((user) => user.username == "js"));
+        const usersWithOnlyDeposits = users.find((user) =>
+          user.transactions.reduce((hasOnlyDeposits, transaction) => {
+            hasOnlyDeposits = hasOnlyDeposits ? transaction.amount > 0 : false;
+            return hasOnlyDeposits;
+          }, true)
+        );
+        console.log(usersWithOnlyDeposits);
+        let hasAllPositiveTransactions = usersWithOnlyDeposits.transactions.every(
+          (transaction) => transaction.amount > 0
+        );
+        // get transactions of all users
+        console.log(
+          `${usersWithOnlyDeposits.name} has all deposits ${hasAllPositiveTransactions}`
+        );
+        
 
     </pre>
     <h2>Output</h2>
     <pre>
-        Array(5) [ 2, 4, 6, 8, 10 ]
+        Elements 1,2,3,4,5,6,7,8,9,10
+        All elements are greater than 0 true
+        All elements are greater than 50 false
         {
-            "name": "JOHN SMITH",
+            "name": "PETER PARKER",
             "pin": 1234,
-            "account_number": "ABC1234",
+            "account_number": "ABC1235",
             "transactions": [
               {
                 "date": "01/01/2021",
-                "amount": 1000,
+                "amount": 2000,
                 "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
+                "desctiption": "PETER PARKER has deposited EUR 2000 on 01/01/2021"
               },
               {
                 "date": "02/01/2021",
-                "amount": -500,
+                "amount": 1500,
                 "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
+                "desctiption": "PETER PARKER has deposited EUR 1500 on 02/01/2021"
               },
               {
                 "date": "01/02/2021",
                 "amount": 800,
                 "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 800 on 01/02/2021"
+                "desctiption": "PETER PARKER has deposited EUR 800 on 01/02/2021"
               },
               {
                 "date": "01/03/2021",
-                "amount": -50,
+                "amount": 150,
                 "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
+                "desctiption": "PETER PARKER has deposited EUR 150 on 01/03/2021"
               }
             ],
-            "username": "js"
+            "username": "pp"
           }
-
-
+          PETER PARKER has all deposits true
     </pre>
   </body>
 </html>

@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="script.js"></script>
-    <title>Filter array method</title>
+    <title>Sort array method</title>
   </head>
   <body>
-    <h1>Filter array method</h1>
+    <h1>Sort array method</h1>
     <h2>Code</h2>
     <pre>
         "use strict;";
-        // Filter function accepts a callback function and creates a new array
-        // The callback function should return a boolean value based on the filteration criteria
+        // sort function accepts  a callback function as an argument
+        // and returns a new array that matches the specified sort criteria.
 
-        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // sort callback function should return 1 to change the order and -1 to keep the order
+        const arr = [-1, 10, 2, -8, 0, 20, 100, 80];
+        console.log(`Elements ${arr}`);
+        const sortedArray = arr.sort((a, b) => a - b);
+        console.log(`Sorted array in ascending order: ${sortedArray}`);
+        const sortedArray2 = arr.sort((a, b) => b - a);
+        console.log(`Sorted array in descending order: ${sortedArray2}`);
 
-        const resultArr = arr.filter((number) => number % 2 == 0);
-        console.log(resultArr);
         const currency = "EUR";
         let users = [
         {
@@ -38,7 +42,7 @@
             },
             {
                 date: "01/02/2021",
-                amount: 800,
+                amount: 1500,
                 comment: "Some random amount transfer.",
             },
             {
@@ -60,7 +64,7 @@
             },
             {
                 date: "02/01/2021",
-                amount: -1500,
+                amount: 1500,
                 comment: "Some random amount transfer.",
             },
             {
@@ -70,7 +74,7 @@
             },
             {
                 date: "01/03/2021",
-                amount: -150,
+                amount: 150,
                 comment: "Some random amount transfer.",
             },
             ],
@@ -155,47 +159,102 @@
         };
         // Use forEach where no new array is required
         users.forEach(formatUser);
-        // get users with username "js"
-        console.log(...users.filter((user) => user.username == "js"));
+        // slice creates a copy of array of object to avoid changes in original object
+        const currentUser = users[0];
+        console.log(currentUser.transactions);
+        const transactionInAscendingOrder = currentUser.transactions
+        .slice()
+        .sort((a, b) => (a.amount > b.amount ? 1 : a.amount < b.amount ? -1 : 0));
+        console.log(transactionInAscendingOrder);
+        const transactionInDescendingOrder = currentUser.transactions
+        .slice()
+        .sort((a, b) => (a.amount > b.amount ? -1 : a.amount < b.amount ? 1 : 0));
+        console.log(transactionInDescendingOrder);
 
     </pre>
     <h2>Output</h2>
     <pre>
-        Array(5) [ 2, 4, 6, 8, 10 ]
-        {
-            "name": "JOHN SMITH",
-            "pin": 1234,
-            "account_number": "ABC1234",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 1000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -500,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 800,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 800 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": -50,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
-              }
-            ],
-            "username": "js"
+        Elements -1,10,2,-8,0,20,100,80
+        Sorted array in ascending order: -8,-1,0,2,10,20,80,100
+        Sorted array in descending order: 100,80,20,10,2,0,-1,-8
+        [{
+            "date": "01/01/2021",
+            "amount": 1000,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
+          },
+          {
+            "date": "02/01/2021",
+            "amount": -500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
+          },
+          {
+            "date": "01/02/2021",
+            "amount": 1500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1500 on 01/02/2021"
+          },
+          {
+            "date": "01/03/2021",
+            "amount": -50,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
+          }]
+
+          [
+          {
+            "date": "02/01/2021",
+            "amount": -500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
+          },
+          {
+            "date": "01/03/2021",
+            "amount": -50,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
+          },
+          {
+            "date": "01/01/2021",
+            "amount": 1000,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
+          },
+          {
+            "date": "01/02/2021",
+            "amount": 1500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1500 on 01/02/2021"
           }
+          ]
 
-
+          [
+          {
+            "date": "01/02/2021",
+            "amount": 1500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1500 on 01/02/2021"
+          },
+          {
+            "date": "01/01/2021",
+            "amount": 1000,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
+          },
+          {
+            "date": "01/03/2021",
+            "amount": -50,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
+          },
+          {
+            "date": "02/01/2021",
+            "amount": -500,
+            "comment": "Some random amount transfer.",
+            "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
+          }
+          ]
     </pre>
   </body>
 </html>

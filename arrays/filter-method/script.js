@@ -134,7 +134,7 @@ const formatAmount = (amount) => `${currency} ${amount}`;
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  user.transactions = user.transactions.forEach((transaction) => {
+  user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
     } ${formatAmount(Math.abs(transaction.amount))} on ${transaction.date}`;

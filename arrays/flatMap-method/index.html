@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="script.js"></script>
-    <title>Filter array method</title>
+    <title>Flat array method</title>
   </head>
   <body>
-    <h1>Filter array method</h1>
+    <h1>Flat array method</h1>
     <h2>Code</h2>
     <pre>
         "use strict;";
-        // Filter function accepts a callback function and creates a new array
-        // The callback function should return a boolean value based on the filteration criteria
+        // FlatMap function accepts a callback function as an argument and returns array of nested array elements
+        // It extracts array to one level down only.
+        // The flatMap() method returns a new array formed by applying a given callback function to each element of the array,
+        //  and then flattening the result by one level. It is identical to a map() followed by a flat() of depth 1,
+        //  but slightly more efficient than calling those two methods separately.
 
-        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const arr = [[1, 2], 3, [4, 5], 6, [7, 8], 9, 10];
 
-        const resultArr = arr.filter((number) => number % 2 == 0);
-        console.log(resultArr);
+        const result = arr.flatMap((elem) => elem);
+        console.log(result);
+        const arr2 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+        const result2 = arr2.flatMap((elem) => elem);
+        console.log(result2);
+
+        const arr3 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+        const result3 = arr3.flatMap((elem) => elem).flatMap((elem) => elem); // bring 2 level down
+        console.log(result3);
         const currency = "EUR";
         let users = [
         {
@@ -155,47 +165,22 @@
         };
         // Use forEach where no new array is required
         users.forEach(formatUser);
-        // get users with username "js"
-        console.log(...users.filter((user) => user.username == "js"));
 
+        let allUserTransactionAmount = users.flatMap((user) =>
+        user.transactions.map((transaction) => transaction.amount)
+        );
+        // get transactions of all users
+        console.log(allUserTransactionAmount);
+
+        
     </pre>
     <h2>Output</h2>
     <pre>
-        Array(5) [ 2, 4, 6, 8, 10 ]
-        {
-            "name": "JOHN SMITH",
-            "pin": 1234,
-            "account_number": "ABC1234",
-            "transactions": [
-              {
-                "date": "01/01/2021",
-                "amount": 1000,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 1000 on 01/01/2021"
-              },
-              {
-                "date": "02/01/2021",
-                "amount": -500,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 500 on 02/01/2021"
-              },
-              {
-                "date": "01/02/2021",
-                "amount": 800,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has deposited EUR 800 on 01/02/2021"
-              },
-              {
-                "date": "01/03/2021",
-                "amount": -50,
-                "comment": "Some random amount transfer.",
-                "desctiption": "JOHN SMITH has withdrew EUR 50 on 01/03/2021"
-              }
-            ],
-            "username": "js"
-          }
-
-
+        Array(10) [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+        Array(8) [ 1, 2, 3, [4,5], 6, [7,8], 9, 10 ]
+        Array(10) [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+        Array(16)[1000,  -500,  800,  -50,  2000,  -1500,  800,  -150,  1000,  -250,  900,  350,  1000,  -500,  800,  -50]
+  
     </pre>
   </body>
 </html>

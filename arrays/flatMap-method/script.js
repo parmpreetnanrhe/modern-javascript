@@ -1,11 +1,21 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// FlatMap function accepts a callback function as an argument and returns array of nested array elements
+// It extracts array to one level down only.
+// The flatMap() method returns a new array formed by applying a given callback function to each element of the array,
+//  and then flattening the result by one level. It is identical to a map() followed by a flat() of depth 1,
+//  but slightly more efficient than calling those two methods separately.
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const arr = [[1, 2], 3, [4, 5], 6, [7, 8], 9, 10];
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
+const result = arr.flatMap((elem) => elem);
+console.log(result);
+const arr2 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+const result2 = arr2.flatMap((elem) => elem);
+console.log(result2);
+
+const arr3 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+const result3 = arr3.flatMap((elem) => elem).flatMap((elem) => elem); // bring 2 level down
+console.log(result3);
 const currency = "EUR";
 let users = [
   {
@@ -130,18 +140,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -150,5 +152,9 @@ const formatUser = (user) => {
 };
 // Use forEach where no new array is required
 users.forEach(formatUser);
-// get users with username "js"
-console.log(...users);
+
+let allUserTransactionAmount = users.flatMap((user) =>
+  user.transactions.map((transaction) => transaction.amount)
+);
+// get transactions of all users
+console.log(allUserTransactionAmount);

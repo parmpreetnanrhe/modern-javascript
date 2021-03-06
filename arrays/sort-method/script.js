@@ -1,11 +1,15 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// sort function accepts  a callback function as an argument
+// and returns a new array that matches the specified sort criteria.
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// sort callback function should return 1 to change the order and -1 to keep the order
+const arr = [-1, 10, 2, -8, 0, 20, 100, 80];
+console.log(`Elements ${arr}`);
+const sortedArray = arr.sort((a, b) => a - b);
+console.log(`Sorted array in ascending order: ${sortedArray}`);
+const sortedArray2 = arr.sort((a, b) => b - a);
+console.log(`Sorted array in descending order: ${sortedArray2}`);
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
 const currency = "EUR";
 let users = [
   {
@@ -25,7 +29,7 @@ let users = [
       },
       {
         date: "01/02/2021",
-        amount: 800,
+        amount: 1500,
         comment: "Some random amount transfer.",
       },
       {
@@ -47,7 +51,7 @@ let users = [
       },
       {
         date: "02/01/2021",
-        amount: -1500,
+        amount: 1500,
         comment: "Some random amount transfer.",
       },
       {
@@ -57,7 +61,7 @@ let users = [
       },
       {
         date: "01/03/2021",
-        amount: -150,
+        amount: 150,
         comment: "Some random amount transfer.",
       },
     ],
@@ -130,18 +134,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -150,5 +146,14 @@ const formatUser = (user) => {
 };
 // Use forEach where no new array is required
 users.forEach(formatUser);
-// get users with username "js"
-console.log(...users);
+// slice creates a copy of array of object to avoid changes in original object
+const currentUser = users[0];
+console.log(currentUser.transactions);
+const transactionInAscendingOrder = currentUser.transactions
+  .slice()
+  .sort((a, b) => (a.amount > b.amount ? 1 : a.amount < b.amount ? -1 : 0));
+console.log(transactionInAscendingOrder);
+const transactionInDescendingOrder = currentUser.transactions
+  .slice()
+  .sort((a, b) => (a.amount > b.amount ? -1 : a.amount < b.amount ? 1 : 0));
+console.log(transactionInDescendingOrder);

@@ -1,11 +1,14 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// every function accepts  a callback function as an argument
+// and returns true if all values matche the specified criteria.
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(`Elements ${arr}`);
+const result = arr.every((elem) => elem > 0);
+console.log(`All elements are greater than 0 ${result}`);
+const result2 = arr.every((elem) => elem > 50);
+console.log(`All elements are greater than 50 ${result2}`);
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
 const currency = "EUR";
 let users = [
   {
@@ -47,7 +50,7 @@ let users = [
       },
       {
         date: "02/01/2021",
-        amount: -1500,
+        amount: 1500,
         comment: "Some random amount transfer.",
       },
       {
@@ -57,7 +60,7 @@ let users = [
       },
       {
         date: "01/03/2021",
-        amount: -150,
+        amount: 150,
         comment: "Some random amount transfer.",
       },
     ],
@@ -130,18 +133,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -150,5 +145,17 @@ const formatUser = (user) => {
 };
 // Use forEach where no new array is required
 users.forEach(formatUser);
-// get users with username "js"
-console.log(...users);
+const usersWithOnlyDeposits = users.find((user) =>
+  user.transactions.reduce((hasOnlyDeposits, transaction) => {
+    hasOnlyDeposits = hasOnlyDeposits ? transaction.amount > 0 : false;
+    return hasOnlyDeposits;
+  }, true)
+);
+console.log(usersWithOnlyDeposits);
+let hasAllPositiveTransactions = usersWithOnlyDeposits.transactions.every(
+  (transaction) => transaction.amount > 0
+);
+// get transactions of all users
+console.log(
+  `${usersWithOnlyDeposits.name} has all deposits ${hasAllPositiveTransactions}`
+);

@@ -1,11 +1,18 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// Flat function accepts an argument and returns array of nested array elements
+// By default it extract elements one level down
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const arr = [[1, 2], 3, [4, 5], 6, [7, 8], 9, 10];
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
+const result = arr.flat();
+console.log(result);
+const arr2 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+const result2 = arr2.flat();
+console.log(result2);
+
+const arr3 = [[1, 2], 3, [[4, 5], 6], [[7, 8], 9, 10]];
+const result3 = arr3.flat(2); // bring 2 level down
+console.log(result3);
 const currency = "EUR";
 let users = [
   {
@@ -130,18 +137,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -150,5 +149,9 @@ const formatUser = (user) => {
 };
 // Use forEach where no new array is required
 users.forEach(formatUser);
-// get users with username "js"
-console.log(...users);
+
+let allUserTransactionAmount = users
+  .map((user) => user.transactions.map((transaction) => transaction.amount))
+  .flat();
+// get transactions of all users
+console.log(allUserTransactionAmount);

@@ -1,11 +1,10 @@
 "use strict;";
-// Reduce function accepts a callback function and returns a single value based on the array
-// The callback function should return a single value
+// FInd function accepts a callback function and returns first matched element based on the filteration criteria
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const sum = arr.reduce((previousValue, number) => previousValue + number, 0);
-console.log(sum);
+const result = arr.find((number) => number > 5);
+console.log(result);
 const currency = "EUR";
 let users = [
   {
@@ -130,18 +129,10 @@ const createUsername = (user) => {
 };
 
 const formatAmount = (amount) => `${currency} ${amount}`;
-const getCurrentBalance = (user) => {
-  let initialBalance = 0;
-  user.balance = user.transactions.reduce((currentBalance, transaction) => {
-    currentBalance += transaction.amount;
-    return currentBalance;
-  }, initialBalance);
-};
 
 const formatUser = (user) => {
   user.name = user.name.toUpperCase();
   createUsername(user);
-  getCurrentBalance(user);
   user.transactions.forEach((transaction) => {
     transaction.desctiption = `${user.name} has ${
       transaction.amount > 0 ? "deposited" : "withdrew"
@@ -151,4 +142,5 @@ const formatUser = (user) => {
 // Use forEach where no new array is required
 users.forEach(formatUser);
 // get users with username "js"
-console.log(...users);
+console.log(users.find((user) => user.username == "js"));
+console.log(users.find((user) => user.username == "xyz"));

@@ -1,0 +1,133 @@
+/*
+  Utility CSS
+*/
+:root {
+  --primary-font-family: "Poppins", sans-serif;
+  --site-line-height: 1.5;
+  --site-text-align: justify;
+  --site-font-size: 1rem;
+  --site-main-heading-font-size: 1.2rem;
+  --site-width: 100vw;
+  --site-background-color: #ffffff;
+  --site-header-background-color: var(--site-background-color);
+  --site-header-padding: 1rem;
+  --site-btn-primary-background: #365089;
+  --site-btn-primary-color: #dcd7d4;
+  --site-nav-links-color: #000000;
+}
+* {
+  box-sizing: border-box;
+  font-family: var(--primary-font-family);
+  line-height: var(--site-line-height);
+  text-align: var(--site-text-align);
+  font-size: var(--site-font-size);
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-size: var(--site-main-heading-font-size);
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  width: 100vw;
+}
+
+.hidden {
+  display: none;
+}
+/*
+  Site CSS
+*/
+
+/**
+  Header Section
+*/
+
+header {
+  width: var(--site-width);
+  background-color: var(--site-header-background-color);
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0;
+}
+
+header h1 {
+  flex-basis: 20vw;
+  text-align: center;
+  padding: var(--site-header-padding);
+}
+
+#main-menu {
+  flex-basis: 80vw;
+}
+
+.nav-links {
+  text-align: end;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.nav-link button {
+  background-color: var(--site-btn-primary-background);
+  color: var(--site-btn-primary-color);
+  border-radius: 3rem;
+  padding: var(--site-header-padding);
+  border: none;
+}
+.nav-link a {
+  display: inline-block;
+  padding: var(--site-header-padding);
+  color: var(--site-nav-links-color);
+}
+
+.slide img {
+  height: 100vh;
+}
+.slide h2 {
+  position: absolute;
+  top: 50%;
+  color: #f2f2f2;
+  font-size: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 1rem;
+}
+
+/**
+  Content section Css
+*/
+.section {
+  border-bottom: 1px solid #f2f2f2;
+}
+.section h2 {
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 2.5rem;
+}
+.section-details {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3rem 0;
+}
+
+.section-details img {
+  width: 40vw;
+  border-radius: 1.5rem;
+}
+
+.section-description {
+  width: 40vw;
+}
+
+.section-description p {
+  padding: 1rem 0;
+}

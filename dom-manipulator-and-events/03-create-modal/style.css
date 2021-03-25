@@ -1,0 +1,74 @@
+:root {
+  --primary-dark-color: #1a3876;
+  --primary-light-color: #ffffff;
+  --overlay-color: #e6eaf0;
+  --font-size: 16px;
+  --font: Elena, -apple-system, Arial, BlinkMacSystemFont, roboto slab,
+    droid serif, segoe ui, Ubuntu, Cantarell, Georgia, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+  font-size: var(--font-size);
+}
+body {
+  background-color: var(--primary-light-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-dark-color);
+  margin-bottom: 0.5vw;
+}
+
+div {
+  padding: 1vw;
+  text-align: center;
+}
+
+.modal {
+  width: 40vw;
+  display: block;
+  border: 2px solid var(--primary-dark-color);
+  position: absolute;
+  left: 30%;
+  top: 33%;
+  z-index: 9999;
+  text-align: justify;
+  background-color: var(--primary-light-color);
+}
+
+.close-modal {
+  position: absolute;
+  top: 11%;
+  right: 3%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+.hidden {
+  display: none;
+}
+.overlay {
+  background-color: var(--overlay-color);
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  opacity: 0.4;
+}
+
+.show-modal {
+  padding: 0.5vw;
+  border-radius: 0.3vw;
+  background-color: var(--primary-dark-color);
+  color: var(--primary-light-color);
+}

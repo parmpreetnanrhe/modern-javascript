@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modal Example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>Modal Example</h1>
+      <p>Clicking on the buttons below would open a modal.</p>
+      <div class="buttons">
+        <button type="button" class="show-modal">Show Modal 1</button>
+        <button type="button" class="show-modal">Show Modal 2</button>
+        <button type="button" class="show-modal">Show Modal 3</button>
+      </div>
+      <div class="modal hidden">
+        <h2>Modal</h2>
+        <a href="javascript:void(0)" class="close-modal">&times;</a>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque
+          temporibus ullam fuga pariatur odio, voluptatibus tempore corporis in
+          minima nulla neque maxime eius at repellendus, est iusto modi quis
+          voluptatem?
+        </p>
+      </div>
+      <div class="overlay hidden"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

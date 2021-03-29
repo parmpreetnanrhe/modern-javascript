@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>ES6 Class</title>
+  </head>
+  <body>
+    <h1>ES6 Class</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+
+      class Pipe {
+        constructor(size, label, unit) {
+          this.size = size;
+          this.label = label;
+          this.unit = unit;
+        }
+      }
+      class PipeSet {
+        constructor(number, pipe) {
+          this.number = number;
+          this.pipe = pipe;
+        }
+      }
+      class PipeStation {
+        constructor(distance, unit) {
+          this.distance = distance;
+          this.unit = unit;
+        }
+      
+        calculatePipesRequired(pipes) {
+          let length = this.distance;
+          const pipesRequired = new Array();
+          for (let pipe of pipes) {
+            const number = parseFloat(Math.trunc(length / pipe.size));
+            const prod = number * pipe.size;
+            length = (length - prod).toFixed(2);
+            pipesRequired.push(new PipeSet(number, pipe));
+          }
+          this.pipesRequired = pipesRequired;
+        }
+      
+        get details() {
+          let output = `Pipes required are: `;
+          let total = 0;
+          this.pipesRequired.forEach((pipeSet) => {
+            total += pipeSet.number;
+            output += `
+              ${pipeSet.number} ${pipeSet.pipe.label} ${pipeSet.pipe.unit} lengths`;
+          });
+          output += `
+          Total pipes required are: ${total} lengths of pipes`;
+          return output;
+        }
+      }
+      const pipes = new Array();
+      pipes.push(new Pipe(10, "ten", "meter"));
+      pipes.push(new Pipe(5, "five", "meter"));
+      pipes.push(new Pipe(1, "one", "meter"));
+      pipes.push(new Pipe(0.25, "twenty-five", "centimeter"));
+      pipes.push(new Pipe(0.1, "ten", "centimeter"));
+      pipes.push(new Pipe(0.05, "five", "centimeter"));
+      pipes.push(new Pipe(0.01, "one", "centimeter"));
+      console.log(pipes);
+      const station = new PipeStation(37.72, "meter");
+      station.calculatePipesRequired(pipes);
+      console.log(station.details);
+      
+
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+      Pipes required are: 
+      3 ten meter lengths
+      1 five meter lengths
+      2 one meter lengths
+      2 twenty-five centimeter lengths
+      2 ten centimeter lengths
+      0 five centimeter lengths
+      2 one centimeter lengths
+  Total pipes required are: 12 lengths of pipes
+      </pre
+    >
+  </body>
+</html>

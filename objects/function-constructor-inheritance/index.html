@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Function Constructor Inheritance</title>
+  </head>
+  <body>
+    <h1>Function Constructor Inheritance</h1>
+    <h2>Code</h2>
+    <pre>
+        "use strict;";
+
+        const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+        };
+
+        // Defining Instance Functions
+        Person.prototype.calculateAge = function () {
+        return new Date().getFullYear() - this.birthYear;
+        };
+
+        const Student = function (firstName, birthYear, rollNumber) {
+        // Binding this keyword with Person method
+        Person.call(this, firstName, birthYear);
+        this.rollNumber = rollNumber;
+        };
+        // Inheriting all methods from Person
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+        // After inheriting parent class, adding methods to child class
+        Student.prototype.details = function () {
+        return `${
+            this.firstName
+        } is ${this.calculateAge()} years old, and has roll number ${
+            this.rollNumber
+        }.`;
+        };
+        const john = new Student("John Smith", 1996, 101);
+        console.log(john);
+        console.log(john instanceof Student);
+        console.log(john instanceof Person);
+        console.log(john.constructor);
+        console.log(john.details());
+
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        {
+            "firstName": "John Smith",
+            "birthYear": 1996,
+            "rollNumber": 101
+          }
+          true
+          true
+          function Student(firstName, birthYear, rollNumber)
+          John Smith is 25 years old, and has roll number 101.
+          
+      </pre
+    >
+  </body>
+</html>

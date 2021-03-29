@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="script.js"></script>
+    <title>Function Constructor</title>
+  </head>
+  <body>
+    <h1>Function Constructor</h1>
+    <h2>Code</h2>
+    <pre>
+      "use strict;";
+      /**
+       *  Functional constructor can be declared as normal function or function expression.
+       *  We can not use Arrow function for declaring function constructor as it doesn't have access to this keyword.
+       */
+      const Person = function (firstName, birthYear) {
+        // Initialising properties
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+        // This function returns the object implicitly.
+      };
+      
+      // Attaching Behaviour to objects that are created using Person Constructor
+      
+      Person.prototype.details = function () {
+        return `${this.firstName} is of age ${
+          new Date().getFullYear() - this.birthYear
+        }.`;
+      };
+      // Static method
+      Person.greet = function () {
+        console.log("Hey!");
+      };
+      const john = new Person("John", 1989);
+      const merry = new Person("Merry", 1990);
+      console.log(john);
+      console.log(merry);
+      console.log(john.__proto__);
+      console.log(merry.__proto__);
+      console.log(john.__proto__ === Person.prototype);
+      console.log(merry.__proto__ === Person.prototype);
+      console.log(john.details());
+      console.log(merry.details());
+      
+      Person.greet();
+      
+      </pre
+    >
+    <h2>Output</h2>
+    <pre>
+        {
+            "firstName": "John",
+            "birthYear": 1989
+          }
+
+          {
+            "firstName": "Merry",
+            "birthYear": 1990
+          }
+          {}
+          {}
+          true
+          true
+          John is of age 32.
+          Merry is of age 31.
+          Hey!
+      </pre
+    >
+  </body>
+</html>

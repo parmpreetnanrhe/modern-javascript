@@ -9,6 +9,11 @@ let john = {
   lastName: "Brown",
   standard: "VI",
   section: "A",
+  isEligibleForRetirement: function (birthYear, retirementAge) {
+    return `${this.firstName} with ${birthYear} is ${
+      2021 - birthYear >= retirementAge ? "" : "not"
+    } eligible for retirement`;
+  },
 };
 // Dot operator
 console.log("First name:", john.firstName);
@@ -20,3 +25,7 @@ const nameKey = "Name";
 // console.log("First name:", john."first"+nameKey);
 // Bracket operator
 console.log("Last name:", john["last" + nameKey]);
+console.log(
+  "Is Eligible for retirement:",
+  john["isEligibleForRetirement"](1989, 50)
+);

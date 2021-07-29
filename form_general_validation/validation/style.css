@@ -23,7 +23,6 @@ input[type="tel"] {
   display: block;
 }
 .form-container {
-  background-color: #f5f5f5;
   border-radius: 1rem 1rem;
   padding: 2rem;
   display: flex;

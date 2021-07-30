@@ -2,9 +2,12 @@
 
 const registerEvents = () => {
   // Select elements available on page load
+  const formSelector = $all("form");
   const selectboxSelector = $all("select");
   const inputSelector = $all("input");
+  const inputWithDataTypeSelector = $all("input[data-type]");
   const textAreaSelector = $all("textarea");
+
   // Event Listeners
   elemListRegisterEvent({
     elementNodes: [...inputSelector, ...selectboxSelector, ...textAreaSelector],
@@ -17,10 +20,10 @@ const registerEvents = () => {
     funcs: [turnOffAutocomplete],
   });
   elemListRegisterEvent({
-    elementNodes: [...inputSelector, ...textAreaSelector],
+    elementNodes: [...inputWithDataTypeSelector],
     eventName: keydownEvent,
     appendEventAsAnArgument: 1,
-    funcs: [allowOnlyLettersAndSpaces],
+    funcs: [validateKey],
     args: undefined,
   });
 

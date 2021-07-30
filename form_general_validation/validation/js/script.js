@@ -1,13 +1,16 @@
 "use strict;";
-const registerBtn = $("#registerBtn");
+const registerBtn = $first("#registerBtn");
+const pageContainer = $first("#pageContainer");
 
 const registerUser = function (form) {
-  //   updateAttribute(this, "disabled", "disabled");
+  updateAttribute(this, "disabled", "disabled");
   hideElements(".error");
+  // Form id
+  let formID = `${form.id}`;
   // Get all form fields
   const formElements = [...form.elements];
   // Validate field data
-  const validFields = formElements.every((elem) => {
+  const hasValidData = formElements.every((elem) => {
     return validateField({
       elem,
       displayErrorMessage: 1,
@@ -17,7 +20,23 @@ const registerUser = function (form) {
       tagClass: "error",
     });
   });
-  logWarning("valid registerUser ", validFields);
+  // Remove Table details data
+  removeElement(`#table-${formID}`);
+
+  if (hasValidData) {
+    // Display form details
+    let tableAttributeList = [
+      { name: "class", value: "table-responsive" },
+      { name: "id", value: `table-${formID}` },
+    ];
+    appendElement(
+      pageContainer,
+      "beforeend",
+      getFormDataInTable(`#${form.id}`, tableAttributeList)
+    );
+    scrollToView({ elem: $first(`#table-${formID}`) });
+  }
+  removeAttribute(this, "disabled");
   return;
 };
 

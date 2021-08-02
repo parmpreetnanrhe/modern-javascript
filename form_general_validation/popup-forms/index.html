@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+      }
+      .logo {
+        flex-grow: 1;
+      }
+      #popup-buttons {
+        flex-grow: 4;
+      }
+      .nav {
+        text-align: right;
+        padding-right: 2rem;
+        margin-top: 0.5rem;
+      }
+      .nav-link {
+        background-color: #ffc600;
+        display: inline-block;
+        text-decoration: none;
+        padding: 0.5rem;
+        margin: 0.5 rem;
+        color: #000;
+        border-radius: 0.2rem;
+      }
+
+      .modal {
+        width: 40vw;
+        display: block;
+        border: 2px solid var(--primary-dark-color);
+        position: absolute;
+        left: 30vw;
+        top: 20vh;
+        z-index: 9999;
+        text-align: justify;
+        background-color: var(--primary-light-color);
+        padding: 1rem;
+        line-height: 1.5rem;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 2vh;
+        right: 3vh;
+        text-decoration: none;
+        color: black;
+        font-size: 1.5vw;
+        font-weight: bold;
+      }
+      .hidden {
+        display: none;
+      }
+      .overlay {
+        background-color: var(--overlay-color);
+        height: 100vh;
+        position: fixed;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        opacity: 0.4;
+        overflow-y: auto;
+        width: 100%;
+      }
+    </style>
+    <title>Pop up Login/Sign Up Form</title>
+  </head>
+  <body>
+    <!-- pageContainer starts -->
+    <div class="container" id="pageContainer">
+      <!--page-header starts-->
+      <div class="page-header">
+        <h1 class="logo">Site Logo</h1>
+        <div class="nav" id="popup-buttons">
+          <div class="nav-links">
+            <a
+              href="javascript:void(0);"
+              class="nav-link show-modal"
+              data-content="#loginFrmContainer"
+              data-modal="#popupFormModal"
+              ><span>Login Form</span></a
+            >
+            <a
+              href="javascript:void(0);"
+              class="nav-link show-modal"
+              data-modal=".modal"
+              data-content="#registrationFrmContainer"
+              ><span>Signup Form</span></a
+            >
+          </div>
+        </div>
+      </div>
+      <!--page-header ends-->
+    </div>
+    <!-- pageContainer ends -->
+    <!-- 
+  registration form starts
+-->
+    <span class="hidden" id="registrationFrmContainer">
+      <form
+        name="registrationFrm"
+        id="registrationFrm"
+        method="POST"
+        action="action.php"
+        enctype="multipart/form-data"
+      >
+        <div class="form-container">
+          <div class="form-row">
+            <div class="col-12">
+              <label for="title" class="form-label isRequired">Title</label>
+              <div class="form-group">
+                <input
+                  type="radio"
+                  name="title"
+                  value="mr"
+                  id="titleMr"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="title"
+                />
+                <label for="titleMr">Mr</label>
+                <input
+                  type="radio"
+                  name="title"
+                  value="ms"
+                  id="titleMs"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="title"
+                />
+                <label for="titleMs">Ms</label>
+                <input
+                  type="radio"
+                  name="title"
+                  value="dr"
+                  id="titleDr"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="title"
+                />
+                <label for="titleMs">Dr</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="firstName" class="form-label isRequired"
+                >First Name</label
+              >
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="form-control"
+                  required="required"
+                  data-type="lettersAndSpaces"
+                  data-validator="checkNonEmpty,checkName"
+                  data-validationType="every"
+                  data-format="name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="middleName" class="form-label">Middle Name</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="middleName"
+                  name="middleName"
+                  class="form-control"
+                  data-type="lettersAndSpaces"
+                  data-validator="checkEmpty,checkName"
+                  data-validationType="some"
+                  data-format="name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="lastName" class="form-label isRequired"
+                >Last Name</label
+              >
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="form-control"
+                  required="required"
+                  data-type="lettersAndSpaces"
+                  data-validator="checkNonEmpty,checkName"
+                  data-validationType="every"
+                  data-format="name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="email" class="form-label isRequired">Email</label>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  required="required"
+                  data-type="email"
+                  data-validator="checkNonEmpty,checkEmail"
+                  data-validationType="every"
+                  data-format="email"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="phone" class="form-label isRequired">Phone</label>
+              <div class="form-group">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-control"
+                  required="required"
+                  data-type="phone"
+                  data-validator="checkNonEmpty,checkPhone"
+                  data-validationType="every"
+                  data-format="phone"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="qualification" class="form-label isRequired"
+                >Qualification</label
+              >
+              <div class="form-group">
+                <select
+                  id="qualification"
+                  name="qualification"
+                  required="required"
+                  class="form-control"
+                  multiple="multiple"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="uppercase"
+                >
+                  <option value="MBA">MBA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="BCA">BCA</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="language" class="form-label">Language</label>
+              <div class="form-group">
+                <select id="language" name="language" class="form-control">
+                  <option value="Hindi">Hindi</option>
+                  <option value="English">English</option>
+                  <option value="Punjabi">Punjabi</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <label for="message" class="form-label isRequired">Message</label>
+              <div class="form-group">
+                <textarea
+                  rows="6"
+                  id="message"
+                  name="message"
+                  data-type="lettersAndSpaces"
+                  class="form-control"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="hobby" class="form-label isRequired">Hobby</label>
+              <div class="form-group">
+                <input
+                  type="checkbox"
+                  name="hobby"
+                  value="football"
+                  id="hobbyFootball"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="name"
+                />
+                <label for="hobbyFootball">Football</label>
+                <input
+                  type="checkbox"
+                  name="hobby"
+                  value="tennis"
+                  id="hobbyTennis"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="name"
+                />
+                <label for="hobbyTennis">Tennis</label>
+                <input
+                  type="checkbox"
+                  name="hobby"
+                  value="reading"
+                  id="hobbyReading"
+                  required="required"
+                  data-validator="checkNonEmpty"
+                  data-validationType="every"
+                  data-format="name"
+                />
+                <label for="hobbyReading">Reading</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="photo" class="form-label isRequired">Photo</label>
+              <div class="form-group">
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  required="required"
+                  data-validator="checkNonEmpty,checkImageFiles"
+                  data-validationType="every"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <label for="docs" class="form-label isRequired">Docs</label>
+              <div class="form-group">
+                <input
+                  type="file"
+                  name="docs"
+                  id="docs"
+                  required="required"
+                  multiple="multiple"
+                  data-validator="checkNonEmpty,checkDocumentFiles"
+                  data-validationType="every"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-12">
+              <button type="button" class="form-submit" id="registerBtn">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </span>
+    <!--registration form ends -->
+
+    <!--
+  Login Form starts
+-->
+    <span class="hidden" id="loginFrmContainer">
+      <form
+        name="loginFrm"
+        id="loginFrm"
+        method="POST"
+        action="action.php"
+        enctype="multipart/form-data"
+      >
+        <div class="form-row">
+          <div class="col-12">
+            <label for="email" class="form-label isRequired">Email</label>
+            <div class="form-group">
+              <input
+                type="email"
+                id="emailLogin"
+                name="emailLogin"
+                class="form-control"
+                required="required"
+                data-type="email"
+                data-validator="checkNonEmpty,checkEmail"
+                data-validationType="every"
+                data-format="email"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-12">
+            <label for="email" class="form-label isRequired">Password</label>
+            <div class="form-group">
+              <input
+                type="password"
+                id="passwordLogin"
+                name="passwordLogin"
+                class="form-control"
+                required="required"
+                data-validator="checkNonEmpty"
+                data-validationType="every"
+              />
+            </div>
+            <div class="form-row">
+              <div class="col-12">
+                <button type="button" class="form-submit" id="loginBtn">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </span>
+    <!--
+  Login Form ends
+-->
+
+    <!-- Modal start-->
+    <div class="modal hidden" id="popupFormModal">
+      <h2>Modal</h2>
+      <a href="javascript:void(0)" class="close-modal">&times;</a>
+      <div class="modal-body"></div>
+    </div>
+    <!-- Modal end-->
+    <div class="overlay hidden"></div>
+    <script src="js/query-selector.js"></script>
+    <script src="js/dom-manipulation-functions.js"></script>
+    <script src="js/data-formatter.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/form-field-functions.js"></script>
+    <script src="js/validations.js"></script>
+    <script src="js/higher-order-functions.js"></script>
+    <script src="js/event-functions.js"></script>
+    <script src="js/modal-operations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/common-event-listener-registration.js"></script>
+  </body>
+</html>

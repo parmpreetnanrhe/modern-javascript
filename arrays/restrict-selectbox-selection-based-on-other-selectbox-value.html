@@ -1,0 +1,219 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Select Box</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <select name="phase[1]" id="phase[1]" class="phase" data-val="1">
+            <option value="">Select</option>
+            <option value="1">Subject</option>
+            <option value="2">Language</option>
+          </select>
+        </td>
+        <td>
+          <select
+            name="question[1]"
+            id="question[1]"
+            class="question"
+            data-val="1"
+            multiple="multiple"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select name="phase[2]" id="phase[2]" class="phase" data-val="2">
+            <option value="">Select</option>
+            <option value="1">Subject</option>
+            <option value="2">Language</option>
+          </select>
+        </td>
+        <td>
+          <select
+            name="question[2]"
+            id="question[2]"
+            class="question"
+            data-val="2"
+            multiple="multiple"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select name="phase[3]" id="phase[3]" class="phase" data-val="3">
+            <option value="">Select</option>
+            <option value="1">Subject</option>
+            <option value="2">Language</option>
+          </select>
+        </td>
+        <td>
+          <select
+            name="question[3]"
+            id="question[3]"
+            class="question"
+            data-val="3"
+            multiple="multiple"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select name="phase[4]" id="phase[4]" class="phase" data-val="4">
+            <option value="">Select</option>
+            <option value="1">Subject</option>
+            <option value="2">Language</option>
+          </select>
+        </td>
+        <td>
+          <select
+            name="question[4]"
+            id="question[4]"
+            class="question"
+            data-val="4"
+            multiple="multiple"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <script>
+      const phaseQuestionApprovalChangeHandler = (event) => {
+        // Select all selectboxes with class "phase"
+        const phasesSelect = [...document.querySelectorAll(".phase")];
+        // Retrieve all phase value options
+        const phaseValues =
+          phasesSelect.length == 0
+            ? []
+            : [...phasesSelect[0].querySelectorAll("option")]
+                .map((option) => option.value)
+                .filter((value) => value != "");
+        // Select all selectboxes with class "question"
+        const questionsSelect = [...document.querySelectorAll(".question")];
+        // current row number
+        const selectRowNumber = event.target.dataset.val;
+        if (
+          event.target.classList.contains("phase") &&
+          event.target.value === ""
+        ) {
+          // get all empty selectboxes
+          const emptyPhaseRows = phasesSelect
+            .filter((phase) => phase.value === "")
+            .map((phase) => phase.dataset.val);
+          // Deselect empty phase questions
+          questionsSelect
+            .filter((question) => {
+              return emptyPhaseRows.includes(question.dataset.val);
+            })
+            .forEach((question) => {
+              [...question.querySelectorAll("option")].forEach((option) => {
+                option.selected = false;
+                option.disabled = false;
+              });
+              question.selectedIndex = -1;
+            });
+        }
+        // Loop over all phase values
+        phaseValues.forEach((phaseValue) => {
+          // Select all selectboxes with given phase value
+          const phasesWithGivenValue = phasesSelect.filter(
+            (phase) => phase.value === phaseValue
+          );
+          const phaseRowNumberForGivenValue = phasesWithGivenValue.map(
+            (phase) => phase.dataset.val
+          );
+
+          const phaseQuestions = questionsSelect.filter((question) => {
+            return phaseRowNumberForGivenValue.includes(question.dataset.val);
+          });
+
+          // Enable all questions option for phase
+          phaseQuestions.forEach((question) => {
+            [...question.querySelectorAll("option")].forEach((option) => {
+              option.disabled = false;
+            });
+          });
+          // Loop over all questions
+          phaseQuestions.forEach((question) => {
+            const questionName = question.name;
+            const questionNum = question.dataset.val;
+            const otherQuestions = phaseQuestions.filter(
+              (question) => question.dataset.val !== questionNum
+            );
+            const selectedOptions = [
+              ...question.querySelectorAll("option:checked"),
+            ].map((option) => option.value);
+            const unselectedActiveOptions = [
+              ...question.querySelectorAll("option:not(:checked)"),
+            ]
+              .filter((option) => option.disabled === false)
+              .map((option) => option.value);
+
+            otherQuestions.forEach((question) => {
+              [...question.querySelectorAll("option")].forEach((option) => {
+                if (selectedOptions.includes(option.value)) {
+                  option.disabled = true;
+                  option.selected = false;
+                }
+              });
+            });
+          });
+        });
+      };
+
+      // Add Event Listener
+      [...document.querySelectorAll(".phase")].forEach((element) => {
+        element.addEventListener("change", phaseQuestionApprovalChangeHandler);
+      });
+      [...document.querySelectorAll(".question")].forEach((element) => {
+        element.addEventListener("change", phaseQuestionApprovalChangeHandler);
+      });
+    </script>
+  </body>
+</html>
